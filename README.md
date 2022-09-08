@@ -1,6 +1,6 @@
 # Taking Screenshot Of Webpage with Playwright
 
-Main Tech behind this are - 
+Main Tech behind this are -
 
 - Playwright
 - ExpressJS
