@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        article {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        #screenshot {
+            max-width: 100%;
+            margin-top: 10px;
+            border: 2px solid black;
+        }
+
+        #screenshotForm {
+            display: flex;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+        }
+
+        #submit {
+            background-color: #26c;
+            border: 0;
+            padding: 10px 15px;
+            margin-left: 10px;
+            color: white;
+            border-radius: 20px;
+        }
+
+        #download {
+            padding: 0px 8px 0px 8px;
+            margin-top: 10px;
+        }
+
+        #download-icon {
+            height: 25px;
+            width: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <article>
+        <div id="screenshotForm">
+            <input type="url" placeholder="For Example https://www.youtube.com">
+            <button id="submit">Take Screenshot</button>
+        </div>
+
+        <div style="display:none ; width: 100%; align-items: center;" id="screenshotdiv">
+            <img src="" alt="Screenshot" id="screenshot">
+            <!-- <div style="text-align: center;">
+                <button id="download"><img src="/images/download.png" id="download-icon" download="screenshot" alt="download-icon"></button>
+            </div> -->
+        </div>
+
+    </article>
+
+    <script>
+        const button = document.getElementById("submit")
+        const downloadButton = document.getElementById("download")
+        button.addEventListener("click", () => {
+            const url = document.querySelector('input').value;
+            if (!url) {
+                console.log("Url Not Provided")
+            }
+            else {
+                const image = document.querySelector('#screenshot');
+                const sdiv = document.getElementById("screenshotdiv")
+                // image.style.display = 'none';
+                image.src = "/screenshot?url=" + encodeURIComponent(url)
+                image.onload = () => {
+                    // image.style.display = 'block'
+                    sdiv.style.display = "block"
+                }
+
+            }
+        })
+
+        // downloadButton.addEventListener("click", () => {
+        //     let request = new XMLHttpRequest()
+        //     request.open("get","http://localhost:8000/download",true)
+        //     request.responseType='blob';
+        //     request.addEventListener("load",()=>{
+        //         console.log(request.response)
+        //         let blob = request.response
+        //         let link = document.createElement('a')
+        //         link.href = window.URL.createObjectURL(blob)
+        //         link.click()
+        //     })
+        //     request.send()
+        // })
+
+    </script>
+
+</body>
+
+</html>
